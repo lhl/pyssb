@@ -1,6 +1,8 @@
 # pyssb
 
-Tool for building Site Specific Browsers with PyQT4.
+Tool for building Site Specific Browsers with PyQT5.
+
+(PyQT4 uses WebKit 537.21 (~Safari 6) while PyQT5 uses WebKit 538.1 (~Safari 8))
 
 Currently a rough PoC - it basically works.
 
@@ -12,15 +14,15 @@ TODO:
 
 Works:
 * 1Password Anywhere
+* Asana
 * Dropbox Notes (runs slow)
 * Evernote
-* GMail (gives versionof Safari no longer supported warning but works fine)
+* GMail
 * Hackpad
 * Messenger
 
 Doesn't Work:
-* Asana - freaks out
-* Wunderlist - doesn't load
+* Wunderlist - doesn't load, blank screen
 * Hangouts - has UA check
 
 Consider...
