@@ -12,8 +12,6 @@ from   PyQt4 import QtWebKit
 import sys
 
 
-
-
 class SSBWindow(QtWebKit.QWebView):
   def __init__(self, ssb_config):
     super(SSBWindow, self).__init__()
