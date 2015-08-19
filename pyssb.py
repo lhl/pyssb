@@ -5,14 +5,14 @@ import json
 import os
 import pickle
 from   pprint import pprint
-from   PyQt4 import QtCore
-from   PyQt4 import QtGui
-from   PyQt4 import QtNetwork
-from   PyQt4 import QtWebKit
+from   PyQt5 import QtCore
+from   PyQt5 import QtWidgets
+from   PyQt5 import QtNetwork
+from   PyQt5 import QtWebKitWidgets
 import sys
 
 
-class SSBWindow(QtWebKit.QWebView):
+class SSBWindow(QtWebKitWidgets.QWebView):
   def __init__(self, ssb_config):
     super(SSBWindow, self).__init__()
 
@@ -59,7 +59,7 @@ class SSBWindow(QtWebKit.QWebView):
       raw_cookies.append( cookie.toRawForm(1) )
     self.settings.setValue("cookies", pickle.dumps(raw_cookies))
 
-    QtGui.QMainWindow.closeEvent(self, event)
+    QtWidgets.QMainWindow.closeEvent(self, event)
 
 
 ### BEGIN CONFIG ###
@@ -68,7 +68,7 @@ ssb_config = {'name':'pyssb','title':'pyssb','url':'https://github.com/lhl/pyssb
 
 
 if __name__ == "__main__":
-  app = QtGui.QApplication(sys.argv)
+  app = QtWidgets.QApplication(sys.argv)
   ssb = SSBWindow(ssb_config)
   ssb.show()
   sys.exit(app.exec_())
