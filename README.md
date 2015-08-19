@@ -1,21 +1,26 @@
 # pyssb
 
-Tool for building Site Specific Browsers with PyQT5.
+pyssb is a package for building general purpose SSBs (Site Specific Browsers) with PyQT5.
 
-(PyQT4 uses WebKit 537.21 (~Safari 6) while PyQT5 uses WebKit 538.1 (~Safari 8))
+It's currently a rough proof of concept - it basically works and you can easily create a custom SSB just by editing the "ssb_config" line in a copy of the pyssb.py file
 
-Currently a rough PoC - it basically works.
+We use PyQT5, since it seems to have a new version of WebKit (on Arch Linux, PyQT4 4.11.4-1 uses WebKit 537.21 (~Safari 6) while PyQT5 5.5-1 uses WebKit 538.1 (~Safari 8)).
 
+## ROADMAP
+* Add QIcon/QPixmap support
+* Create a Builder Script
+  * Make it a GUI?
+  * Build Executables/Install Locations
+  * Add list of selectable/supported configs
+* Turn pyssb into a pypi-friendly library/class
+* installer for Arch, Debian/Ubuntu, OS X (MacPorts, Brew) 
 
-TODO:
-* Builder
-* Icons
-* Installing/Building Executables
+## SSB List
 
-Works:
+### Works
 * 1Password Anywhere
 * Asana
-* Dropbox Notes (runs slow)
+* Dropbox Notes
 * Evernote
 * GMail
 * Hackpad
@@ -25,6 +30,8 @@ Doesn't Work:
 * Wunderlist - doesn't load, blank screen
 * Hangouts - has UA check
 
+
+## Notes
 Consider...
 https://code.google.com/p/cefpython/
 https://code.google.com/p/cefpython/wiki/PyQt
