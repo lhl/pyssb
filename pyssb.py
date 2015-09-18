@@ -2,6 +2,7 @@
 
 
 import json
+import lassie
 import os
 import pickle
 from   pprint import pprint
@@ -89,15 +90,18 @@ class SSBWindow(QtWebKitWidgets.QWebView):
         try:
           favicon_url = self.config['favicon_url']
         except:
-          url = urlparse(self.config['url'])
-          favicon_url = '%s://%s/favicon.ico' % (url.scheme, url.netloc)
+          p = lassie.fetch(self.config['url'])
+          for i in p['images']:
+            if i['type'] == 'favicon':
+              favicon_url = i['src']
+              break
         r = urlopen(favicon_url)
         f = r.read()
-        self.settings.setValue("icon", f)
+        self.settings.setValue('icon', f)
       except:
         f = None
     else:
-      f = self.settings.value("icon")
+      f = self.settings.value('icon')
     icon_img = QtGui.QImage.fromData(f)
     icon_pix = QtGui.QPixmap.fromImage(icon_img)
     self.setWindowIcon(QtGui.QIcon(icon_pix))
