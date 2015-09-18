@@ -7,10 +7,39 @@ import pickle
 from   pprint import pprint
 from   PyQt5 import QtCore
 from   PyQt5 import QtGui
-from   PyQt5 import QtWidgets
 from   PyQt5 import QtNetwork
 from   PyQt5 import QtWebKitWidgets
+from   PyQt5 import QtWidgets
 import sys
+
+
+class SearchWidget(QtWidgets.QLineEdit):
+  def __init__(self, wb):
+    super(SearchWidget, self).__init__()
+
+    self.wb = wb 
+    self.move(100, 100)
+    self.hideSearch = QtWidgets.QShortcut("Esc", self, activated = lambda: self.toggleSearch())
+    self.hideSearch2 = QtWidgets.QShortcut("Ctrl+F", self, activated = lambda: self.toggleSearch())
+    self.returnPressed.connect(self.search)
+
+
+  def focusOutEvent(self, event):
+    self.hide()
+
+
+  def search(self):
+    self.wb.findText(self.text(), QtWebKitWidgets.QWebPage.FindWrapsAroundDocument)
+
+
+  def toggleSearch(self):
+    if self.isVisible():
+      self.hide()
+      self.wb.setFocus()
+    else:
+      self.move(self.wb.x(), self.wb.y()+self.wb.size().height()-self.size().height())
+      self.show()
+      self.setFocus()
 
 
 class SSBWindow(QtWebKitWidgets.QWebView):
@@ -30,8 +59,20 @@ class SSBWindow(QtWebKitWidgets.QWebView):
       self.resize(900, 600)
       self.move(100, 100)
 
+    ### Extra Browser Functionality
+    self.search = SearchWidget(self)
+    self.showSearch = QtWidgets.QShortcut("Ctrl+F", self, activated = lambda: self.search.toggleSearch())
+
+    self.quit = QtWidgets.QShortcut("Ctrl+Q", self, activated = self.close)
+    self.zoomIn = QtWidgets.QShortcut("Ctrl++", self, activated = lambda: self.setZoomFactor(self.zoomFactor()+.2))
+    self.zoomIn2 = QtWidgets.QShortcut("Ctrl+=", self, activated = lambda: self.setZoomFactor(self.zoomFactor()+.2))
+    self.zoomIn = QtWidgets.QShortcut("Ctrl+-", self, activated = lambda: self.setZoomFactor(self.zoomFactor()-.2))
+    self.zoomOne = QtWidgets.QShortcut("Ctrl+0", self, activated = lambda: self.setZoomFactor(1))
+    ###
+
     # Icon
     if not self.settings.value("icon"):
+      print('geticon')
       '''
       if no icon then 
         try to get base url
@@ -72,6 +113,7 @@ class SSBWindow(QtWebKitWidgets.QWebView):
       raw_cookies.append( cookie.toRawForm(1) )
     self.settings.setValue("cookies", pickle.dumps(raw_cookies))
 
+    self.search.close()
     QtWidgets.QMainWindow.closeEvent(self, event)
 
 
