@@ -10,11 +10,16 @@ from   PyQt5 import QtGui
 from   PyQt5 import QtNetwork
 from   PyQt5 import QtWebKitWidgets
 from   PyQt5 import QtWidgets
+import sys
+
+
+# Python 2 & 3
 try:
   from urllib.request import urlopen
+  from urllib.parse import urlparse
 except:
   from urllib import urlopen
-import sys
+  from urlparse import urlparse
 
 
 class SearchWidget(QtWidgets.QLineEdit):
@@ -80,12 +85,19 @@ class SSBWindow(QtWebKitWidgets.QWebView):
 
     # Icon
     if not self.settings.value("icon"):
-      r = urlopen('http://randomfoo.net/favicon.ico')
-      f = r.read()
-      self.settings.setValue("icon", f)
+      try:
+        try:
+          favicon_url = self.config['favicon_url']
+        except:
+          url = urlparse(self.config['url'])
+          favicon_url = '%s://%s/favicon.ico' % (url.scheme, url.netloc)
+        r = urlopen(favicon_url)
+        f = r.read()
+        self.settings.setValue("icon", f)
+      except:
+        f = None
     else:
       f = self.settings.value("icon")
-
     icon_img = QtGui.QImage.fromData(f)
     icon_pix = QtGui.QPixmap.fromImage(icon_img)
     self.setWindowIcon(QtGui.QIcon(icon_pix))
