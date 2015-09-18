@@ -10,6 +10,10 @@ from   PyQt5 import QtGui
 from   PyQt5 import QtNetwork
 from   PyQt5 import QtWebKitWidgets
 from   PyQt5 import QtWidgets
+try:
+  from urllib.request import urlopen
+except:
+  from urllib import urlopen
 import sys
 
 
@@ -76,16 +80,15 @@ class SSBWindow(QtWebKitWidgets.QWebView):
 
     # Icon
     if not self.settings.value("icon"):
-      print('geticon')
-      '''
-      if no icon then 
-        try to get base url
-        pull favicon.ico (alternatively, set callback when finished loading to read favicon.ico
-      save icon into base64
-      '''
+      r = urlopen('http://randomfoo.net/favicon.ico')
+      f = r.read()
+      self.settings.setValue("icon", f)
+    else:
+      f = self.settings.value("icon")
 
-      self.setWindowIcon(QtGui.QIcon('favicon.ico'))
-
+    icon_img = QtGui.QImage.fromData(f)
+    icon_pix = QtGui.QPixmap.fromImage(icon_img)
+    self.setWindowIcon(QtGui.QIcon(icon_pix))
 
     # Cookie Jar
     self.cookiejar = QtNetwork.QNetworkCookieJar(self)
