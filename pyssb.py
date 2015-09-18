@@ -6,6 +6,7 @@ import os
 import pickle
 from   pprint import pprint
 from   PyQt5 import QtCore
+from   PyQt5 import QtGui
 from   PyQt5 import QtWidgets
 from   PyQt5 import QtNetwork
 from   PyQt5 import QtWebKitWidgets
@@ -28,6 +29,18 @@ class SSBWindow(QtWebKitWidgets.QWebView):
       # Reasonable Defaults
       self.resize(900, 600)
       self.move(100, 100)
+
+    # Icon
+    if not self.settings.value("icon"):
+      '''
+      if no icon then 
+        try to get base url
+        pull favicon.ico (alternatively, set callback when finished loading to read favicon.ico
+      save icon into base64
+      '''
+
+      self.setWindowIcon(QtGui.QIcon('favicon.ico'))
+
 
     # Cookie Jar
     self.cookiejar = QtNetwork.QNetworkCookieJar(self)
@@ -68,6 +81,12 @@ ssb_config = {'name':'pyssb','title':'pyssb','url':'https://github.com/lhl/pyssb
 
 
 if __name__ == "__main__":
+  # Disable Logging
+  def handler(msg_type, msg_log_context, msg_string):
+    pass
+
+  QtCore.qInstallMessageHandler(handler)
+
   app = QtWidgets.QApplication(sys.argv)
   ssb = SSBWindow(ssb_config)
   ssb.show()
