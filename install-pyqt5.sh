@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# This can be as complex as you want it to be...
+# http://unix.stackexchange.com/questions/92199/how-can-i-reliably-get-the-operating-systems-name
+
 if [ "$(uname)" == "Darwin" ]; then
   if [[ $(type -P "port") ]]; then
     sudo port install py-pyqt5
