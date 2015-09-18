@@ -2,6 +2,8 @@
 
 # This can be as complex as you want it to be...
 # http://unix.stackexchange.com/questions/92199/how-can-i-reliably-get-the-operating-systems-name
+# https://github.com/ValveSoftware/steam-for-linux/issues/2005
+# http://unix.stackexchange.com/questions/6345/how-can-i-get-distribution-name-and-version-number-in-a-simple-shell-script
 
 if [ "$(uname)" == "Darwin" ]; then
   if [[ $(type -P "port") ]]; then
