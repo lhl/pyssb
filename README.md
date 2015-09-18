@@ -5,7 +5,6 @@ pyssb is a package for building general purpose SSBs (Site Specific Browsers) wi
 It's currently a rough proof of concept - it basically works and you can easily create a custom SSB just by editing the "ssb_config" line in a copy of the pyssb.py file
 
 ## ROADMAP
-* Add QIcon/QPixmap support
 * Create a Builder Script
   * Make it a GUI?
   * Build Executables/Install Locations
@@ -61,3 +60,5 @@ Consider also:
 qt5 transition:
 * https://wiki.qt.io/Transition_from_Qt_4.x_to_Qt5
 * http://pyqt.sourceforge.net/Docs/PyQt5/pyqt4_differences.html
+
+Thanks http://zetcode.com/gui/pyqt5/
