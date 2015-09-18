@@ -18,7 +18,11 @@ class SearchWidget(QtWidgets.QLineEdit):
     super(SearchWidget, self).__init__()
 
     self.wb = wb 
-    self.move(100, 100)
+
+    # We have to do this to properly size the widget
+    self.show()
+    self.hide()
+
     self.hideSearch = QtWidgets.QShortcut("Esc", self, activated = lambda: self.toggleSearch())
     self.hideSearch2 = QtWidgets.QShortcut("Ctrl+F", self, activated = lambda: self.toggleSearch())
     self.returnPressed.connect(self.search)
