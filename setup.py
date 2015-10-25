@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
-from distutils.core import setup, find_packages
+from setuptools import setup, find_packages
+
 
 install_requires = [
   "lassie>=0.6.0",
