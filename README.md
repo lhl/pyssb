@@ -3,10 +3,11 @@
 pyssb is a package for building general purpose SSBs (Site Specific Browsers) with PyQT5.
 
 ## Installation
-You may need to install PyQT5 using your OS package manager. You should be able to install the pyssb package via PyPI:
+You should be able to install the pyssb package via PyPI:
 ```
 sudo pip install -U pyssb
 ```
+You of course will need to install PyQT5 as well, but this probably needs to be installed via your OS package manager.  You may have to separately install a PyQT5 webkit package separately.
 
 ## Usage
 You should be able to run `pyssb` to generate simple python executables.
