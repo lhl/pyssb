@@ -9,7 +9,7 @@ install_requires = [
 
 setup(
   name = 'pyssb',
-  version = '0.1',
+  version = '0.1.1',
   author = 'Leonard Lin',
   author_email = 'lhl@randomfoo.net',
   url = 'https://github.com/lhl/pyssb',
