@@ -63,8 +63,10 @@ Doesn’t Work:
 Notes
 -----
 
-This might not be a good fit for you. If so, there might be some
-alternatives:
+This might not be a good fit for you. If so, there might be some alternatives:
 
-SSB solutions for OS X: \* http://fluidapp.com/ \*
-https://github.com/kfix/MacPin \* https://github.com/dmarmor/epichrome
+SSB solutions for OS X: 
+
+- http://fluidapp.com/ 
+- https://github.com/kfix/MacPin 
+- https://github.com/dmarmor/epichrome
